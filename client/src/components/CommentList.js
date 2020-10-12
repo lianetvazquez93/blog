@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default ({ postId }) => {
-  const [commnets, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
 
   const fetchComments = async () => {
     const response = await axios.get(
@@ -15,9 +15,14 @@ export default ({ postId }) => {
     fetchComments();
   }, []);
 
-  const renderedComments = commnets.map((comment) => {
+  const renderedComments = comments.map((comment) => {
     return <li key={comment.id}>{comment.content}</li>;
   });
 
-  return <ul>{renderedComments}</ul>;
+  return (
+    <div>
+      {renderedComments.length}
+      <ul>{renderedComments}</ul>
+    </div>
+  );
 };
