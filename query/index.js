@@ -24,14 +24,14 @@ app.post("/events", (req, res) => {
     const { id, content, postId } = data;
 
     const post = posts[postId];
-    post.comments.push({ id, content });
+    post.comments.push({ id, content, status: "pending" });
   }
 
   if (type === "CommentUpdated") {
     const { id, content, postId, status } = data;
 
     const post = posts[postId];
-    const comment = post.comments.find((comment) => commentId === id);
+    const comment = post.comments.find((comment) => comment.id === id);
 
     comment.status = status;
   }
